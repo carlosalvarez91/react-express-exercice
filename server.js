@@ -22,6 +22,19 @@ app.get('/api/country', (req, res) => {
   })
 });
 
+// Question 3:
+// Using the same API ( https://restcountries.eu/ ) in the React front end list all the countries
+// and a field to filter the country by name.
+app.get('/api/countries', (req, res) => {
+  request.get("https://restcountries.eu/rest/v2/all", (error, response, body)=>{
+    if(error){
+      return console.log(error)
+    }
+    res.json(JSON.parse(body))
+  })
+});
+
+
 const port = 5000;
 
 app.listen(port, () => `Server running on port ${port}`);

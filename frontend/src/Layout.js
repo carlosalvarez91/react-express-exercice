@@ -18,7 +18,7 @@ const CustomLayout = (props) => {
             style={{ lineHeight: '64px' }}
           >
             <Menu.Item key="1"><Link to="/question1">Question 1</Link></Menu.Item>
-            <Menu.Item key="2"><Link to="/question2">Question 2</Link></Menu.Item>
+            
             <Menu.Item key="3"><Link to="/question3">Question 3</Link></Menu.Item>
           </Menu>
         </Header>

@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import {connect } from 'react-redux';
 import {getCountries} from '../../store/actions/country'
+import {getCountriesList} from '../../store/actions/country'
 
 
-class Countries extends Component {
+class CountriesList extends Component {
 
   static propTypes = {
-    getCountries: PropTypes.func.isRequired,
+    getCountriesList: PropTypes.func.isRequired,
     countries: PropTypes.array.isRequired
   }
 
@@ -16,18 +17,19 @@ class Countries extends Component {
   }
 
   componentWillMount() {
-    this.props.getCountries();
+    this.props.getCountriesList();
   }
 
   render() {
 
     return (
       <div>
-        <h2>Question 1</h2>
+        <h2>Question 3</h2>
         <p>
-          Write a function that connects to https://restcountries.eu/ and gets a unique country from a
-          specific name given using the Node back end and send it to the front end.
-          </p>
+        Using the same API ( https://restcountries.eu/ ), and from an array of string, write a function
+        that returns a list of countries where their name matches at least a part of one of these string
+        use the Node back end and send it to the front end.
+        </p>
           <ul>
             {this.props.countries.map(country =>
               <li key={country.name}>{country.name} </li>
@@ -43,7 +45,7 @@ const mapStateToProps = (state) => ({
 })
 
 const dispatchToProps = (dispatch) => ({
-   getCountries: () => dispatch(getCountries())
+   getCountriesList: () => dispatch(getCountriesList())
 })
 
-export default connect(mapStateToProps, dispatchToProps)(Countries);
+export default connect(mapStateToProps, dispatchToProps)(CountriesList);
