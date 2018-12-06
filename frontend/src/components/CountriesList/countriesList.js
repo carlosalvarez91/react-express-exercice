@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import {connect } from 'react-redux';
-import {getCountries} from '../../store/actions/country'
 import {getCountriesList} from '../../store/actions/country'
 
 

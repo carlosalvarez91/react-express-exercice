@@ -22,6 +22,35 @@ app.get('/api/country', (req, res) => {
   })
 });
 
+// Question 2:
+// Using the same API ( https://restcountries.eu/ ), and from an array of string, write a function
+// that returns a list of countries where their name matches at least a part of one of these string
+// use the Node back end and send it to the front end.
+let arrayMatchingCountries = []
+app.get('/api/match-country', (req, res) => {
+
+  let arrayCountries = ['spain', 'malta', 'non_existing_country']
+
+
+  arrayCountries.forEach(e => {
+    
+      request.get("https://restcountries.eu/rest/v2/name/"+e, (error, response, body)=>{
+        if(error){
+          return console.log(error)
+        }
+
+        console.log(body)
+        arrayMatchingCountries.push(JSON.parse(body))
+        // arr = JSON.parse(body)
+        // console.log(arr[0])
+        // arrayMatchingCountries.push(arr[0])
+      })
+
+  });
+  console.log(arrayMatchingCountries)
+});
+
+
 // Question 3:
 // Using the same API ( https://restcountries.eu/ ) in the React front end list all the countries
 // and a field to filter the country by name.
