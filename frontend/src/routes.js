@@ -8,6 +8,7 @@ import Slots from './components/Slots/slots';
 
 const BaseRouter = () => (
     <div>
+        <Route exact path='/' component={Countries}/>
         <Route exact path='/question1' component={Countries}/>
         <Route exact path='/question2' component={CountriesMatch}/>
         <Route exact path='/question3' component={CountriesList}/>

@@ -11,10 +11,13 @@ const store = createStore(filterReducer);
 class CountriesList extends Component {
   constructor() {
     super();
+
     this.state = store.getState();
+
     this.unsubscribe = store.subscribe(() => {
       this.setState(store.getState());
     })
+    
     this.handleFilter = this.handleFilter.bind(this);
   }
 
@@ -59,9 +62,8 @@ class CountriesList extends Component {
       <div>
         <h2>Question 3</h2>
         <p>
-        Using the same API ( https://restcountries.eu/ ), and from an array of string, write a function
-        that returns a list of countries where their name matches at least a part of one of these string
-        use the Node back end and send it to the front end.
+          Using the same API ( https://restcountries.eu/ ) in the React front end list all the countries
+          and a field to filter the country by name.
         </p>
         <input placeholder="Enter country name to filter" type="text" onChange={this.handleFilter} />
           <ul>
