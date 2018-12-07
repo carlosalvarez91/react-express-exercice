@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './slots.css'
 
 class Slots extends Component {
     constructor(){
@@ -20,7 +20,7 @@ class Slots extends Component {
         e.preventDefault();
         this.play();
     }
-   play() {
+    play() {
         if(this.state.initialCash === 0){
             console.log(' no more cassssshhh')
             return
@@ -81,11 +81,11 @@ class Slots extends Component {
     return (
       <div>
         <h2>Question 4</h2>
- 
-            <h1>{this.state.rand1}</h1>
-            <h1>{this.state.rand2}</h1>
-            <h1>{this.state.rand3}</h1>
-            
+            <div className="slots-container">
+                <div className="slot"><h1>{this.state.rand1}</h1></div>
+                <div className="slot"><h1>{this.state.rand2}</h1></div>
+                <div className="slot"><h1>{this.state.rand3}</h1></div>
+            </div>
             <button onClick={this.handleClick} > Play</button>
             <hr></hr>
 
