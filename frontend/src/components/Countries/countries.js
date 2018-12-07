@@ -28,9 +28,9 @@ class Countries extends Component {
           Write a function that connects to https://restcountries.eu/ and gets a unique country from a
           specific name given using the Node back end and send it to the front end.
           </p>
-          <ul>
+          <ul className="list" >
             {this.props.countries.map(country =>
-              <li key={country.name}>{country.name} </li>
+              <li className="item" key={country.name}>{country.name} </li>
             )}
           </ul>
       </div>

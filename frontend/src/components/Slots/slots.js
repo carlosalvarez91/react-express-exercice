@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Button } from 'antd';
+
 import './slots.css'
 
 class Slots extends Component {
@@ -86,7 +88,7 @@ class Slots extends Component {
                 <div className="slot"><h1>{this.state.rand2}</h1></div>
                 <div className="slot"><h1>{this.state.rand3}</h1></div>
             </div>
-            <button onClick={this.handleClick} > Play</button>
+            <Button onClick={this.handleClick} > Play</Button>
             <hr></hr>
 
             <h5>You've got {this.state.initialCash} coins!</h5>

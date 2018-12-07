@@ -29,9 +29,9 @@ class CountriesMatch extends Component {
         that returns a list of countries where their name matches at least a part of one of these string
         use the Node back end and send it to the front end.
         </p>
-          <ul>
+          <ul className="list" >
             {this.props.countries.map(country =>
-              <li key={country.name}>{country.name} </li>
+              <li className="item" key={country.name}>{country.name} </li>
             )}
           </ul>
       </div>

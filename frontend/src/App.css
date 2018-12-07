@@ -1,0 +1,13 @@
+
+.list{
+    list-style-type: none;
+    padding-inline-start: 0px;
+    margin-top:20px;
+}
+.item{
+    height: 38px;
+    border: 1px solid #a5a5a5;
+    margin-bottom: 4px;
+    text-align: center;
+    padding-top: 7px;
+}

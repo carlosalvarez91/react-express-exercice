@@ -5,6 +5,8 @@ import {getCountriesList} from '../../store/actions/country'
 import {setFilter} from '../../store/actions/filter';
 import filterReducer from '../../store/reducers/filter';
 import {createStore} from 'redux';
+import '../../App.css'
+import { Input } from 'antd';
 
 const store = createStore(filterReducer);
 
@@ -17,7 +19,7 @@ class CountriesList extends Component {
     this.unsubscribe = store.subscribe(() => {
       this.setState(store.getState());
     })
-    
+
     this.handleFilter = this.handleFilter.bind(this);
   }
 
@@ -47,12 +49,12 @@ class CountriesList extends Component {
     const { filterBy } = this.state;
     const List = ({items, filterBy}) => {
       return (
-        <ul>
+        <ul className="list">
           {
             items
               .filter((item) => item.indexOf(filterBy) > -1)
               .map(
-              (item, index) => <li key={index}>{item}</li>
+              (item, index) => <li className="item" key={index}>{item}</li>
             )
           }
         </ul>
@@ -65,7 +67,9 @@ class CountriesList extends Component {
           Using the same API ( https://restcountries.eu/ ) in the React front end list all the countries
           and a field to filter the country by name.
         </p>
-        <input placeholder="Enter country name to filter" type="text" onChange={this.handleFilter} />
+      
+
+        <Input placeholder="Enter country name to filter" onChange={this.handleFilter}/>
           <ul>
             <List items={items} filterBy={filterBy} />
           </ul>
