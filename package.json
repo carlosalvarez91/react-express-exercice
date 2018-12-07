@@ -6,7 +6,8 @@
   "scripts": {
     "client-install": "cd client && npm install",
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install  --prefix frontend && npm run build --prefix frontend"
   },
   "author": "Carlos Alvarez",
   "license": "MIT",

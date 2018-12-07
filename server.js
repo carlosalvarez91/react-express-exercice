@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const request = require('request');
-
+const path = require('patch');
 app.use(cors());
 
 
@@ -68,7 +68,15 @@ app.get('/api/countries', (req, res) => {
   })
 });
 
+// Serve static assets if in production
+if (process.env.NODE_ENV === 'production'){
+  //set static folder
+  app.use(express.static('client/build'));
 
+  app.get('*', (req, res)=>{
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  })
+}
 const port = 5000;
 
 app.listen(port, () => `Server running on port ${port}`);
