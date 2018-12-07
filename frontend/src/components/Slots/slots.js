@@ -8,9 +8,9 @@ class Slots extends Component {
             reel1: ["cherry", "lemon", "apple", "lemon", "banana", "banana", "lemon", "lemon"],
             reel2: ["lemon", "apple", "lemon", "lemon", "cherry", "apple", "banana", "lemon"],
             reel3:  ["lemon", "apple", "lemon", "apple", "cherry", "lemon", "banana", "lemon"],
-            rand1: '',
-            rand2: '',
-            rand3: '',
+            rand1: 'lemon',
+            rand2: 'lemon',
+            rand3: 'lemon',
             initialCash:10
         }
 
@@ -94,7 +94,5 @@ class Slots extends Component {
     );
   }
 }
-
-
 
 export default Slots;
