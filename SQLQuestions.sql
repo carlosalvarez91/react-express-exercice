@@ -15,15 +15,6 @@ DROP DATABASE IF EXISTS `casino`;
 CREATE DATABASE `casino`;
 USE `casino`;
 
-/*types table*/
-DROP TABLE IF EXISTS `types`;
-
-CREATE TABLE `types` (
-  `id` int(11) NOT NULL,
-  `name` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-);
-
 
 /*games table*/
 DROP TABLE IF EXISTS `games`;
@@ -31,10 +22,10 @@ DROP TABLE IF EXISTS `games`;
 CREATE TABLE `games` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
-  `type_id` int(11) NOT NULL,
+  `type` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_games` (`type_id`),
-  CONSTRAINT `fk_games` FOREIGN KEY (`type_id`) REFERENCES `types` (`id`)  ON DELETE CASCADE ON UPDATE CASCADE
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `type_UNIQUE` (`type`)
 );
 
 /*games_countries table*/
@@ -56,21 +47,23 @@ DROP TABLE IF EXISTS `countries`;
 CREATE TABLE `countries` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
 );
 
 /*games_players table -->  favorites table*/
-DROP TABLE IF EXISTS `games_players`;
+DROP TABLE IF EXISTS `favorites`;
 
-CREATE TABLE `games_players` (
+CREATE TABLE `favorites` (
   `id` int(11) NOT NULL,
   `game_id` int(11),
   `player_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_games_players` (`player_id`),
-  KEY `fk_games_players` (`game_id`),
-  CONSTRAINT `fk_games_players` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`)  ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_games_players` FOREIGN KEY (`games_id`) REFERENCES `games` (`id`)  ON DELETE CASCADE ON UPDATE CASCADE
+  UNIQUE KEY `id_UNIQUE` (`id`)
+  KEY `fk_favorites` (`player_id`),
+  KEY `fk_favorites` (`game_id`),
+  CONSTRAINT `fk_favorites` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`)  ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_favorites` FOREIGN KEY (`games_id`) REFERENCES `games` (`id`)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 /*players table*/
@@ -79,7 +72,8 @@ DROP TABLE IF EXISTS `players`;
 CREATE TABLE `players` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
 );
 
 
@@ -93,11 +87,9 @@ their favorite games.
 SELECT 
     `p`.`name` AS `player_name`
 FROM
-    `type` `t`
-JOIN `game` `g` ON
-    `t`.`id` = `g`.`type_id`
-JOIN `games_players` `gp` ON
-    `g`.`id` = `gp`.`game_id`
-JOIN `player` `p` ON
-    `gp`.`player_id` = `p`.`id`
-WHERE `t`.`name` = 'SLOTS';
+    `games` `g`
+JOIN `favorites` `f` ON
+    `g`.`id` = `f`.`game_id`
+JOIN `players` `p` ON
+    `f`.`player_id` = `p`.`id`
+WHERE `g`.`type` = 'SLOTS';
