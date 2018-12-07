@@ -26,28 +26,33 @@ app.get('/api/country', (req, res) => {
 // Using the same API ( https://restcountries.eu/ ), and from an array of string, write a function
 // that returns a list of countries where their name matches at least a part of one of these string
 // use the Node back end and send it to the front end.
-let arrayMatchingCountries = []
-app.get('/api/match-country', (req, res) => {
 
-  let arrayCountries = ['spain', 'malta', 'non_existing_country']
+app.get('/api/countries-match', (req, res) => {
+  
+    request.get("https://restcountries.eu/rest/v2/all", (error, response, body)=>{
+      if(error){
+        return console.log(error)
+      }
+     
+      let arrayCountriesToMatch = ['Spain', 'Malta', 'non existing country']
+      let arrayMatchedCountries = []
 
+      JSON.parse(body).forEach(e => {
 
-  arrayCountries.forEach(e => {
-    
-      request.get("https://restcountries.eu/rest/v2/name/"+e, (error, response, body)=>{
-        if(error){
-          return console.log(error)
-        }
+        arrayCountriesToMatch.forEach(element =>{
+          if(e.name === element){
+            let obj ={
+              name : null
+            }
+            obj.name = e.name
+            arrayMatchedCountries.push(obj)
+          }
 
-        console.log(body)
-        arrayMatchingCountries.push(JSON.parse(body))
-        // arr = JSON.parse(body)
-        // console.log(arr[0])
-        // arrayMatchingCountries.push(arr[0])
-      })
-
-  });
-  console.log(arrayMatchingCountries)
+        })
+      });
+      console.log(arrayMatchedCountries)
+      res.json(arrayMatchedCountries)
+    })
 });
 
 

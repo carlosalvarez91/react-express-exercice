@@ -10,7 +10,17 @@ export const getCountries = () => dispatch => {
         console.log(countries)
         dispatch({type: GET_COUNTRIES, payload: countries})})
 }
-
+export const getCountriesMatch = () => dispatch => {
+    return fetch('http://localhost:5000/api/countries-match')
+      .then(res => {
+          console.log(res)
+          return res.json()
+      })
+      .then(countries => {
+          console.log(countries)
+          dispatch({type: GET_COUNTRIES, payload: countries})})
+  }
+  
 export const getCountriesList = () => dispatch => {
     return fetch('http://localhost:5000/api/countries')
       .then(res => {
@@ -21,4 +31,3 @@ export const getCountriesList = () => dispatch => {
           console.log(countries)
           dispatch({type: GET_COUNTRIES, payload: countries})})
   }
-  

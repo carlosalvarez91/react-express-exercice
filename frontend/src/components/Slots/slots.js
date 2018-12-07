@@ -11,7 +11,7 @@ class Slots extends Component {
             rand1: '',
             rand2: '',
             rand3: '',
-            initialCash:5
+            initialCash:10
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -31,18 +31,17 @@ class Slots extends Component {
     };
 
     spinReel(){
-        //this.state.rand1 = this.state.reel1[Math.floor(Math.random() * this.state.reel1.length)];
         this.setState({
             rand1: this.state.reel1[Math.floor(Math.random() * this.state.reel1.length)]
         })
-        console.log(this.state.rand1)
+        this.setState({
+            rand2: this.state.reel2[Math.floor(Math.random() * this.state.reel2.length)]
+        })
 
-        this.state.rand2 = this.state.reel2[Math.floor(Math.random() * this.state.reel2.length)];
-        console.log(this.state.rand2)
-
-        this.state.rand3 = this.state.reel3[Math.floor(Math.random() * this.state.reel3.length)];
-        console.log(this.state.rand3)
-        //compare the position 0 of each array
+        this.setState({
+            rand3: this.state.reel3[Math.floor(Math.random() * this.state.reel3.length)]
+        })
+        
         this.compareSlots();
     }
     compareSlots(){
